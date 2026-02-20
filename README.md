@@ -1,10 +1,11 @@
----
-title: Line Greeting Agent Mvp
-emoji: 🌍
-colorFrom: indigo
-colorTo: pink
-sdk: docker
-pinned: false
----
+#### Test Run
+````bash
+uv run uvicorn src.line_greeter.capture_userid:app --host 0.0.0.0 --port 8000
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+ngrok http 8000
+
+
+
+curl -Method POST "https://comfortingly-tendrilly-sarina.ngrok-free.dev/line/webhook" -Headers @{ "Content-Type" = "application/json" } -Body '{"events":[{"source":{"userId":"Utest"},"message":{"type":"text","text":"hello"}}]}'
+````
+
